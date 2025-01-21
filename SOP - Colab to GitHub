@@ -1,0 +1,96 @@
+Standard Operating Procedure (SOP): Connecting Google Colab to GitHub and Managing Files
+This SOP outlines the precise and updated process for setting up a GitHub repository, integrating it with Google Colab, and creating, editing, and committing files programmatically. The steps include creating a README file, creating a Jupyter Notebook, and committing all changes to GitHub.
+ 
+1. Create a GitHub Repository
+1.	Log in to GitHub and click on "New Repository".
+2.	Fill in the details: 
+o	Repository Name: For example, colab-project.
+o	Description: Add a brief description (optional).
+o	Do not check: "Initialize this repository with a README."
+3.	Click "Create Repository" to finish.
+ 
+2. Set Up Google Colab
+a. Log into Google Colab
+1.	Open Google Colab.
+2.	Log in with your Google account.
+3.	Create a new notebook: 
+o	Click "File" > "New Notebook".
+o	Rename it (e.g., GitHub_Integration.ipynb).
+b. Mount Google Drive (Optional, but recommended for persistent storage)
+1.	Run the following code to mount your Google Drive: 
+2.	from google.colab import drive
+3.	drive.mount('/content/drive')
+4.	Authenticate your Google account when prompted.
+5.	Verify the mount by listing files: 
+6.	!ls /content/drive/MyDrive
+ 
+3. Clone Your GitHub Repository
+1.	Copy the HTTPS URL of your repository:
+o	Go to your GitHub repository, click the green "Code" button, and copy the HTTPS link (e.g., https://github.com/your-username/colab-project.git).
+2.	Run the following command in Colab to clone the repository:
+3.	!git clone https://github.com/your-username/colab-project.git
+Replace your-username with your GitHub username.
+4.	Navigate to the cloned repository:
+5.	%cd colab-project
+6.	Verify the repository structure:
+7.	!ls
+You should see an empty folder if no files exist yet.
+ 
+4. Configure Git in Colab
+Set up your GitHub credentials so commits are linked to your account:
+1.	Run the following commands:
+2.	!git config --global user.name "Your Name"
+3.	!git config --global user.email "your_email@example.com"
+Replace "Your Name" and "your_email@example.com" with your GitHub username and email.
+4.	Verify the configuration:
+5.	!git config --list
+ 
+5. Create and Edit Files
+a. Create a README File
+1.	Create a README file in the repository:
+2.	with open("README.md", "w") as file:
+3.	    file.write("# Process for Connecting Google Colab to GitHub and Real-Life Use Cases\n\n")
+4.	    file.write("This guide provides a comprehensive workflow to connect Google Colab to GitHub, make changes to files programmatically, and manage real-life tasks such as editing configuration files, Python scripts, and HTML files.\n")
+5.	Verify the file was created:
+6.	!cat README.md
+b. Create a Jupyter Notebook
+1.	Programmatically create a Jupyter Notebook:
+2.	from nbformat import v4 as nbf
+3.	import nbformat
+4.	
+5.	nb = nbf.new_notebook()
+6.	
+7.	nb.cells.append(nbf.new_markdown_cell("# Process for Connecting Google Colab to GitHub and Real-Life Use Cases"))
+8.	nb.cells.append(nbf.new_markdown_cell("This guide provides a comprehensive workflow to connect Google Colab to GitHub and manage files programmatically."))
+9.	
+10.	with open("Colab_to_GitHub.ipynb", "w") as f:
+11.	    nbformat.write(nb, f)
+12.	Verify the notebook was created:
+13.	!ls
+ 
+6. Stage, Commit, and Push Changes
+1.	Stage the Changes:
+2.	!git add .
+3.	Commit the Changes:
+4.	!git commit -m "Initial commit with README and notebook"
+5.	Push Changes to GitHub:
+6.	!git push origin main
+7.	Authenticate with a Personal Access Token (PAT) if prompted:
+o	Go to GitHub Token Settings.
+o	Generate a token with the repo scope.
+o	Use the token as your password during authentication.
+ 
+7. Verify Changes on GitHub
+1.	Go to your GitHub repository in your browser.
+2.	Verify that the README.md and Colab_to_GitHub.ipynb files are present.
+3.	Open the files to ensure their content is correct.
+ 
+8. Summary Workflow
+1.	Create a GitHub repository.
+2.	Clone the repository in Google Colab.
+3.	Configure Git with your credentials.
+4.	Create and edit files (e.g., README, Jupyter Notebook).
+5.	Stage, commit, and push changes to GitHub.
+6.	Verify changes on GitHub.
+This process ensures seamless integration between Google Colab and GitHub while managing real-life programming tasks.
+
