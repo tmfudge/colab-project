@@ -50,6 +50,19 @@ This guide provides a step-by-step process to connect Google Colab to GitHub, ma
    !ls
    ```
 
+3. Modify an existing file (e.g., `README.md`):
+   ```python
+   with open('README.md', 'a') as file:
+       file.write('\n\n### Updating Files\n\n')
+       file.write('- Make your updates directly in the file.\n')
+       file.write('- Save changes programmatically or using an editor.\n')
+   ```
+
+4. Verify the updated content:
+   ```python
+   !cat README.md
+   ```
+
 ---
 
 ### **4. Configure Git in Colab**
@@ -77,25 +90,10 @@ This guide provides a step-by-step process to connect Google Colab to GitHub, ma
 
 2. **Commit the Changes**:
    ```python
-   !git commit -m "Your commit message"
+   !git commit -m "Updated README.md with file modification instructions"
    ```
 
-3. **Authenticate Using a Personal Access Token (PAT)**:
-   If this is your first push, GitHub requires authentication:
-
-   - **Generate a Personal Access Token (PAT)**:
-     1. Go to [GitHub Token Settings](https://github.com/settings/tokens).
-     2. Click **Generate new token** (or **Generate new token (classic)**).
-     3. Select the `repo` scope.
-     4. Copy the token and save it securely.
-
-   - **Set the Remote URL with Your Token**:
-     ```python
-     !git remote set-url origin https://<username>:<token>@github.com/your-username/your-repo.git
-     ```
-     Replace `<username>` with your GitHub username and `<token>` with the generated token.
-
-4. **Push the Changes**:
+3. **Push the Changes**:
    ```python
    !git push origin main
    ```
@@ -105,28 +103,6 @@ This guide provides a step-by-step process to connect Google Colab to GitHub, ma
 ### **6. Verify on GitHub**
 
 Go to your repository on GitHub and confirm the changes appear.
-
----
-
-### **Additional Tips**
-
-1. **Avoid Nested Folders**:
-   - Always navigate to `/content` before cloning a repository.
-
-2. **Automate Cleanup**:
-   - Remove unnecessary folders (e.g., `sample_data`) at the start of every session:
-     ```python
-     !rm -rf /content/sample_data
-     ```
-
-3. **Troubleshooting Authentication Issues**:
-   - If you encounter errors, double-check your Personal Access Token and ensure it has the correct scopes.
-
-4. **Use `.gitignore`**:
-   - Add a `.gitignore` file to exclude unwanted files or folders:
-     ```python
-     echo "sample_data/" >> .gitignore
-     ```
 
 ---
 
